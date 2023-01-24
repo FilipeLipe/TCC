@@ -1,26 +1,50 @@
+import sys
 import urllib.request
 links = []
-content = str(urllib.request.urlopen("https://ufop.br/").read())
-find = '"https://'
+linksRastreados = []
+find = '"http'
 posicao = 0
 
+def encontrarLinks(url):
+    #Pega a url passada por parametro
+    content = str(urllib.request.urlopen(url).read())
+    while(True):
+        try:
+            
+            posicao = int(content.index(find) + len(find))
+            content = content[posicao:]
 
-while(True):
-    posicao = int(content.index(find) + len(find))
-    content = content[posicao:]
+            contentAux = int(content.index('"'))
 
-    contentAux = int(content.index('"'))
-    link = content[ : contentAux]
+            #Pega o link completo, colocamos so http pois caso o link seja um https ele coloca corretamente
+            link = 'http'+ content[ : contentAux]
 
-    print('Link '+ str(posicao) +': "https://'+link+'"')
-    content = content[contentAux:]
+            #Verifica o link e desconsidera aqueles que possuam
+            if '.css' not in link and '.gif' not in link and '.js' not in link and '.png' not in link and '.jpg' not in link:
+
+                #Tem que ter ufop no link para indicar que faz parte do dominio da ufop
+                if 'ufop' in link:
+
+                    #Não permite inserir links duplicados
+                    if link not in links:
+                        links.append(link)
+                        print(link)
+
+            #Atualiza o content para que não pegue novamente o mesmo link
+            content = content[contentAux:]
+
+        except:
+            if content.index('</html>'):
+                print("Web Crawler chegou ao fim da página")
+                break
+            else:
+                print("Erro inesperado no Web Crawler")
+                break
+
+def main():
+    encontrarLinks('https://ufop.br/')
 
 
-# for x in range(len(content)):
-#     try:
-#         posicao += int(content.index(find) + len(find))
-#         link = content[ posicao : posicao + 100]
-#         x = posicao
-#         print("Link "+ str(posicao) +": "+link)
-#     except:
-#         print("Acabou os links")
+if __name__ == '__main__':
+    sys.exit(main())
+    
