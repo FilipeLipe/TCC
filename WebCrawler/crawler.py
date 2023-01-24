@@ -20,7 +20,7 @@ def encontrarLinks(url):
             link = 'http'+ content[ : contentAux]
 
             #Verifica o link e desconsidera aqueles que possuam
-            if '.css' not in link and '.gif' not in link and '.js' not in link and '.png' not in link and '.jpg' not in link:
+            if '.css' not in link and '.gif' not in link and '.js' not in link and '.png' not in link and '.jpg' not in link and 'minha.ufop' not in link:
 
                 #Tem que ter ufop no link para indicar que faz parte do dominio da ufop
                 if 'ufop' in link:
@@ -43,6 +43,18 @@ def encontrarLinks(url):
 
 def main():
     encontrarLinks('https://ufop.br/')
+
+    for link in links:
+        
+        print("\n\nNOVO LINK SERÁ RASTREADO !!\nLink: "+ link +"\n\n")
+        #Caso o link ainda não tenha sido rastreado, ele vai passar pelo processo
+        if link not in linksRastreados:
+            encontrarLinks(link)
+
+        if links == linksRastreados:
+            print("TODOS OS LINKS FORAM RASTREADOS !!")
+            break
+
 
 
 if __name__ == '__main__':
