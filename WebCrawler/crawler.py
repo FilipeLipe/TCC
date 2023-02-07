@@ -62,7 +62,7 @@ def main():
     for link in links:
         
         print()
-        print("\n\n\nTotal Links: "+ links.count+"\nNOVO LINK SERÁ RASTREADO !!\nLink: "+ link +"\n")
+        print("\n\n\nTotal Links: "+ str(len(links)) +"\nNOVO LINK SERÁ RASTREADO !!\nLink: "+ link +"\n")
         #Caso o link ainda não tenha sido rastreado, ele vai passar pelo processo
         if link not in linksRastreados:
             encontrarLinks(link)
