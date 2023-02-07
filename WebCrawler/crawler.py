@@ -1,34 +1,46 @@
 import sys
 import urllib.request
+import ssl
 links = []
 linksRastreados = []
 find = '"http'
 posicao = 0
 
 def encontrarLinks(url):
+    
     #Pega a url passada por parametro
     content = str(urllib.request.urlopen(url).read())
+
     while(True):
         try:
-            
-            posicao = int(content.index(find) + len(find))
+            try:
+                posicao = int(content.index(find) + len(find))
+            except:
+                break
+
             content = content[posicao:]
 
             contentAux = int(content.index('"'))
 
-            #Pega o link completo, colocamos so http pois caso o link seja um https ele coloca corretamente
+            # Pega o link completog
             link = 'http'+ content[ : contentAux]
 
-            #Verifica o link e desconsidera aqueles que possuam
-            if '.css' not in link and '.gif' not in link and '.js' not in link and '.png' not in link and '.jpg' not in link and 'minha.ufop' not in link:
+            #Tem que ter .ufop no link para indicar que faz parte do dominio da ufop
+            if '.ufop' in link:
 
-                #Tem que ter ufop no link para indicar que faz parte do dominio da ufop
-                if 'ufop' in link:
+                #Verifica as extensões permitidas pelo ases
+                if '.css' not in link and '.gif' not in link and '.js' not in link and '.png' not in link and '.jpg' not in link and '.php' not in link and '.JPG' not in link and '.jpeg' not in link:
 
-                    #Não permite inserir links duplicados
-                    if link not in links:
-                        links.append(link)
-                        print(link)
+                    #Links que precisam de autenticação ou que não serão tratados e que estou ignorando
+                    if 'minha.ufop' not in link and 'https://proad.ufop.br/' not in link and 'facebook' not in link: 
+
+                        #Links que não estão abrindo
+                        if 'http://www.ifac.ufop.br' not in link and 'http://www.ichs.ufop.br' not in link and 'http://www.impostosolidario.ufop.br/' not in link and 'ufop.br\\\\/jcarousel\\\\/ajax\\\\/views' not in link and 'ufop.br\\\\/search\\\\/node' not in link and 'https://sites.ufop.br/nti2/book/' not in link and 'http://u2.ufop.br/' not in link and 'https://antigo.propp.ufop.br/casadopesquisador' not in link:
+                            
+                            #Não permite inserir links duplicados
+                            if link not in links:
+                                links.append(link)
+                                print(link)
 
             #Atualiza o content para que não pegue novamente o mesmo link
             content = content[contentAux:]
@@ -42,11 +54,15 @@ def encontrarLinks(url):
                 break
 
 def main():
+    
+    ssl._create_default_https_context = ssl._create_unverified_context
+
     encontrarLinks('https://ufop.br/')
 
     for link in links:
         
-        print("\n\nNOVO LINK SERÁ RASTREADO !!\nLink: "+ link +"\n\n")
+        print()
+        print("\n\n\nTotal Links: "+ links.count+"\nNOVO LINK SERÁ RASTREADO !!\nLink: "+ link +"\n")
         #Caso o link ainda não tenha sido rastreado, ele vai passar pelo processo
         if link not in linksRastreados:
             encontrarLinks(link)
@@ -54,6 +70,9 @@ def main():
         if links == linksRastreados:
             print("TODOS OS LINKS FORAM RASTREADOS !!")
             break
+    
+    #Depois que finalizar, irá printar todos os links encontrados
+    print(links)
 
 
 
