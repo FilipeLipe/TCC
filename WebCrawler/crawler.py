@@ -26,13 +26,9 @@ posicao = 0
 
 def encontrarLinks(url):
     
-    if '.pdf' in url or '.doc' in url or '.docx' in url or '.xlsx' in url:
-        linksPDF.append(url)
-        linksRastreadosNovos.append(url)
-        return
-
     if 'radio.ufop.br/sites/default/files' in url:
         linksRadio.append(url)
+        linksRastreadosNovos.append(url)
         return
 
     #Pega a url passada por parametro
@@ -74,8 +70,14 @@ def encontrarLinks(url):
                             if 'revistacuringa' not in link:
 
                                 #Não permite inserir links duplicados
-                                if link not in linksEncontrados:
+                                if link not in links:
+                                    
+                                    #Esses arquivos não precisam ser rastreados
+                                    if '.pdf' in url or '.doc' in url or '.docx' in url or '.xlsx' in url:
+                                        linksPDF.append(url)
+                                        return
 
+                                    links.append(link)
                                     #Pega o ultimo numero do total de links e seleciona qual a lista que o link irá entrar
                                     balancearLinks(link)
 
@@ -91,9 +93,6 @@ def encontrarLinks(url):
                 break
 
 def balancearLinks(link):
-    #Adciona na lista total para controle
-    links.append(link)
-
     #De acordo com a quantidade de links ja encontrados, ele determina em qual lista o link irá ser processado
     match str(len(links))[-1:]:
         case '0':
@@ -120,14 +119,12 @@ def balancearLinks(link):
 def iniciarThread(numThread, listLinks):
     inicio = time.time()
     for link in listLinks:
-        print("\n\n\n===================================")
-        print("\nTotal Links"+str(numThread)+": "+ str(len(listLinks)) +
-        " | Rastreados: "+ str(len(linksRastreadosNovos)) +
-        " | Erros: "+ str(len(links404)) +
-        " | Tempo de execução: "+ str(round(time.time()-inicio,2)) + "s" + 
-        " | PDF: "+ str(len(linksPDF)) +
-        " | Radio: "+ str(len(linksRadio)) +
-        "\nNOVO LINK SERÁ RASTREADO !!\nLink: "+ link +"\n")
+    #     print("\nThread "+str(numThread)+": "+ str(len(listLinks)) +
+    #     " | Rastreados: "+ str(len(linksRastreadosNovos)) +
+    #     " | Erros: "+ str(len(links404)) +
+    #     " | Tempo de execução: "+ str(round(time.time()-inicio,2)) + "s" + 
+    #     " | PDF: "+ str(len(linksPDF)) +
+    #     " | Radio: "+ str(len(linksRadio)))
         
         #Caso o link ainda não tenha sido rastreado, ele vai passar pelo processo
         if link not in linksRastreadosNovos and link not in linksRastreados:
@@ -136,42 +133,49 @@ def iniciarThread(numThread, listLinks):
         
 def escreverArquivoLinks(arquivoLinks):
     while(True):
-        if(len(links) % 50 == 0):
+        if(len(links) % 30 == 0):
+            print(linksEncontrados)
             for link in links:
+                print(link)
                 if link not in linksEncontrados:
                     linksEncontrados.append(link)
-                    arquivoLinks.write(link+'\n')
+                    arquivoLinks.write(link)
+                    arquivoLinks.write('\n')
 
             
 def escreverArquivoLinksRastreados(arquivoLinksRastreados):
     while(True):
-        if(len(linksRastreadosNovos) % 50 == 0):
+        if(len(linksRastreadosNovos) % 30 == 0):
             for link in linksRastreadosNovos:
                 if link not in linksRastreados:
                     linksRastreados.append(link)
-                    arquivoLinksRastreados.write(link+'\n')
+                    arquivoLinksRastreados.write(link)
+                    arquivoLinksRastreados.write('\n')
 
 def main():
     ssl._create_default_https_context = ssl._create_unverified_context
 
     #Abre o arquivo com os links encontrados e adiciona a variavel
-    with open('../Links.txt', 'w+') as arquivoLinks:
+    with open('../Links.txt', 'r+') as arquivoLinks:
         linksEncontrados = arquivoLinks.readlines()
         linksEncontrados = [x.rstrip('\n') for x in linksEncontrados]
+        print(linksEncontrados)
 
         #Abre o arquivo com os links rastreados e adiciona a variavel
-        with open('../LinksRastreados.txt', 'w+') as arquivoLinksRastreados:
+        with open('../LinksRastreados.txt', 'r+') as arquivoLinksRastreados:
             linksRastreados = arquivoLinksRastreados.readlines()
             linksRastreados = [x.rstrip('\n') for x in linksRastreados]
 
             #Passa por todos os links encontrados e seleciona quais que ainda não foram selecionados
-            for link in linksEncontrados:
-                if link not in linksRastreadosNovos and link not in linksRastreados:
-                    balancearLinks(link)
-                    
+            if len(linksEncontrados) != 0:
+                for link in linksEncontrados:
+                    #Adciona na lista total para controle
+                    links.append(link)
+                    if link not in linksRastreadosNovos and link not in linksRastreados:
+                        balancearLinks(link)
             #Faz a primeira chamada para iniciar o dominio
             encontrarLinks('https://ufop.br/')
-
+            
             t0 = Thread(target=iniciarThread, args=(0, links0))
             t1 = Thread(target=iniciarThread, args=(1, links1))
             t2 = Thread(target=iniciarThread, args=(2, links2))
@@ -185,17 +189,17 @@ def main():
 
             t0.start()
             t1.start()
-            t2.start()
-            t3.start()
-            t4.start()
-            t5.start()
-            t6.start()
-            t7.start()
-            t8.start()
-            t9.start()
+            # t2.start()
+            # t3.start()
+            # t4.start()
+            # t5.start()
+            # t6.start()
+            # t7.start()
+            # t8.start()
+            # t9.start()
             
-            threadArquivoLinks = Thread(target=escreverArquivoLinks, args=(arquivoLinks)).start()
-            threadArquivoLinksRastreados = Thread(target=escreverArquivoLinksRastreados, args=(arquivoLinksRastreados)).start()
+            threadArquivoLinks = Thread(target=escreverArquivoLinks, args=(arquivoLinks,)).start()
+            threadArquivoLinksRastreados = Thread(target=escreverArquivoLinksRastreados, args=(arquivoLinksRastreados,)).start()
 
             while(True):
 
