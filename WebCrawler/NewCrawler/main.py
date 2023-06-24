@@ -25,7 +25,7 @@ def main():
     for link in links_encontrados:
         if link not in links_processados:
             links_processados.add(link)
-            novos_links_encontrados = encontrar_links.encontrar_links(link)
+            novos_links_encontrados = encontrar_links.encontrar_links(links_processados, link)
             print("PROCESSAR LINK | ", link)
         
         links_a_remover.append(link)

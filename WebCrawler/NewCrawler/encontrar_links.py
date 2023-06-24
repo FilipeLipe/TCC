@@ -7,7 +7,7 @@ from typing import List
 
 import filtro
 
-def encontrar_links(url: str) -> List[str]:
+def encontrar_links(links_processados: set(), url: str) -> List[str]:
      
     ssl._create_default_https_context = ssl._create_unverified_context
     links_encontrados = []
@@ -24,7 +24,7 @@ def encontrar_links(url: str) -> List[str]:
         links = soup.find_all('a')
         for a in links:
             link = a.get('href')
-            if filtro.valida_link(link):
+            if filtro.valida_link(links_processados, link):
                 links_encontrados.append(link)
                 
         return links_encontrados
