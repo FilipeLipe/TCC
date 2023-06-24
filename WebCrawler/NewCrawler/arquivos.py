@@ -1,8 +1,5 @@
 
-import requests
-from bs4 import BeautifulSoup
 from typing import List
-
 
 def ler_linhas_arquivo(links: set(), nome_arquivo: str) -> set():
     with open(nome_arquivo, 'r') as arquivo:
