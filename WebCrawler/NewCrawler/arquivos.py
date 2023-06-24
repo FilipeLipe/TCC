@@ -24,8 +24,8 @@ def escrever_linhas_arquivo(links: set(), nome_arquivo: str):
 def remover_linhas_arquivo(links_remover: List[str], nome_arquivo: str):
     with open(nome_arquivo, 'r') as arquivo:
         links = arquivo.readlines()
-    
-    links = [link for i, link in enumerate(links) if i+1 not in links_remover]
+
+        diferenca = list(set(links) - set(links_remover))
 
     with open(nome_arquivo, 'w') as arquivo:
-        arquivo.writelines(links)
+        arquivo.writelines(diferenca)

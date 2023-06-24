@@ -20,8 +20,7 @@ def main():
     links_processados = arquivos.ler_linhas_arquivo(links_processados, "links_processados.txt")
 
     if len(links_encontrados) == 0:
-        link = 'https://ufop.br/'
-        novos_links_encontrados = encontrar_links.encontrar_links(link)
+        links_encontrados.add('https://ufop.br/')
 
     for link in links_encontrados:
         if link not in links_processados:
