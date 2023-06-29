@@ -11,7 +11,7 @@ def ler_linhas_arquivo(links: set(), nome_arquivo: str) -> set():
 
 def escrever_linhas_arquivo(links: set(), nome_arquivo: str):
     try:
-        with open(nome_arquivo, 'a') as arquivo:
+        with open(nome_arquivo, 'w') as arquivo:
             for link in links:
                 arquivo.write(link + '\n')
     except:

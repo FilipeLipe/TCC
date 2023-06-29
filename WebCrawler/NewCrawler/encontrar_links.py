@@ -24,6 +24,13 @@ def encontrar_links(links_processados: set(), url: str) -> List[str]:
         links = soup.find_all('a')
         for a in links:
             link = a.get('href')
+
+            if link and link[0] == "/":
+                if url[len(url)-1] == "/": 
+                    link = url + link[1:]
+                else:
+                    link = url + link
+
             if filtro.valida_link(links_processados, link):
                 links_encontrados.append(link)
                 
