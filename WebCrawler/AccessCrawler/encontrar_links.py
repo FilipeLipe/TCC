@@ -24,12 +24,7 @@ def encontrar_links(links_processados: set(), links_com_erro: set(), url: str):
         links = soup.find_all('a')
         for a in links:
             link = a.get('href')
-
-            if link and link[0] == "/":
-                if url[len(url)-1] == "/": 
-                    link = url + link[1:]
-                else:
-                    link = url + link
+            link = verificar_link_local(url, link)
 
             if filtro.valida_link(links_processados, links_com_erro, link):
                 links_encontrados.add(link)
@@ -38,3 +33,22 @@ def encontrar_links(links_processados: set(), links_com_erro: set(), url: str):
     else:
         print('Erro ao acessar a página:', response.status_code ,' | ', url)
         return links_encontrados, False
+    
+
+def verificar_link_local(url, link):
+    if link:
+        if link.startswith('http'):
+            return link
+        
+        if link.startswith('/'):
+
+            dominio_url = url
+            posicao_barra = url.find("/", 8) 
+            if posicao_barra != -1:
+                dominio_url = url[:posicao_barra]
+
+            return dominio_url + link
+
+    return None
+
+    

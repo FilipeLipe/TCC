@@ -51,6 +51,7 @@ def processar_link(results, link, link_a_verificar):
                 mensagem = "O link que está sendo rastreado foi encontrado na página: ", link
                 messagebox.showinfo("Link Encontrado", mensagem)
                 with open('arquivosTXT/html_link_verificado.txt', 'w', encoding='utf-8') as arquivo:
+                    arquivo.write(link+"\n")
                     arquivo.write(requests.get(link, verify=False).text)
 
 

@@ -8,7 +8,7 @@ links_com_erro = set()
 
 
 link_inicial = 'https://www.ufop.br/'
-link_a_verificar = 'http://www.acessoainformacao.ufop.br/'
+link_a_verificar = ''
 
 def main():
     global links_encontrados, links_processados, links_com_erro, link_inicial, link_a_verificar
