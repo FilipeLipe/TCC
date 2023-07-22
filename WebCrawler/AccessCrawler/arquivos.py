@@ -9,7 +9,7 @@ def ler_linhas_arquivo(links: set(), nome_arquivo: str) -> set():
         return links
     
 
-def escrever_linhas_arquivo(links: set(), nome_arquivo: str):
+def escrever_linhas_arquivo(links, nome_arquivo: str):
     try:
         with open(nome_arquivo, 'w') as arquivo:
             for link in links:

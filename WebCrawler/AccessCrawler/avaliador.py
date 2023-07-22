@@ -1,3 +1,6 @@
+import sys
+import arquivos
+from model.Avaliacao import Avaliacao
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service
@@ -6,46 +9,66 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-service = Service(GeckoDriverManager().install())
 
-firefox_options = Options()
-firefox_options.add_argument('-headless')
+def avaliarLink(link):
 
-navegador = webdriver.Firefox(service = service, options=firefox_options)
+    avaliacao = Avaliacao(link)
 
+    navegador = getNavegador()
+    
+    getAvaliacao(navegador, link)
 
-navegador.get('https://asesweb.governoeletronico.gov.br/')
-
-url = "https://asesweb.governoeletronico.gov.br/"
-navegador.get(url)
+    getResposta(navegador, avaliacao)
 
 
+def getNavegador():
+    service = Service(GeckoDriverManager().install())
+    firefox_options = Options()
+    firefox_options.add_argument('-headless')
+    return webdriver.Firefox(service = service, options=firefox_options)
 
-url_input = navegador.find_element(By.ID, "url")
-url_to_add = "https://www.ufop.br/"
-url_input.clear()
-url_input.send_keys(url_to_add)
+def getAvaliacao(navegador, link):
+
+    navegador.get("https://asesweb.governoeletronico.gov.br/")
+
+    url_input = navegador.find_element(By.ID, "url")
+    url_input.clear()
+    url_input.send_keys(link)
+
+    executar = navegador.find_element(By.ID, "input_tab_1")
+    executar.click()
+
+def getResposta(navegador, avaliacao: Avaliacao):
+
+    getPorcentagem(navegador, avaliacao)
+    getTabela(navegador, avaliacao)
+
+    setResposta(avaliacao)
+
+
+def getPorcentagem(navegador, avaliacao: Avaliacao):
+    wait = WebDriverWait(navegador, 180)  
+    porcentagem_element = wait.until(EC.presence_of_element_located((By.ID, "webaxscore")))
+    avaliacao.porcentagem = porcentagem_element.find_element(By.TAG_NAME, "span").text
+
+
+def getTabela(navegador, avaliacao: Avaliacao):
+    tabela = navegador.find_element(By.ID, "tabelaErros")
+    linhas = tabela.find_elements(By.TAG_NAME, "tr")
+
+    for linha in linhas:
+        colunas = linha.find_elements(By.TAG_NAME, "td")
+        if len(colunas) >= 3:
+            avaliacao.secoes.append(colunas[0].text.strip())
+            avaliacao.erros.append(colunas[1].text.strip())
+            avaliacao.avisos.append(colunas[2].text.strip())
 
 
 
-execute_button = navegador.find_element(By.ID, "input_tab_1")
-execute_button.click()
+def setResposta(avaliacao):
+    with open('arquivosTXT/avaliacao.txt', 'a') as arquivo: 
+        arquivo.write('\n'+ avaliacao.to_string())
 
-
-wait = WebDriverWait(navegador, 180)  
-resultado_element = wait.until(EC.presence_of_element_located((By.ID, "webaxscore")))
-
-
-div_element = navegador.find_element(By.ID, "webaxscore")
-
-# Extrair o texto do elemento <strong> (o texto 'ASES')
-strong_element = div_element.find_element(By.TAG_NAME, "strong")
-texto_strong = strong_element.text
-
-# Extrair o texto do elemento <span> (a porcentagem '63.67%')
-span_element = div_element.find_element(By.TAG_NAME, "span")
-texto_span = span_element.text
-
-# Imprimir os resultados
-print("Texto do <strong>: ", texto_strong)
-print("Texto do <span>: ", texto_span)
+if __name__ == '__main__':
+    sys.exit(avaliarLink('http://ufop.br'))
+    #link;porcentagem;totalErros;totalAvisos;marcacaoErros;marcacaoAvisos;comportamentoErros;comportamentoAvisos;conteudoInformacaoErros;conteudoInformacaoAvisos;apresentacaoDesignErros;apresentacaoDesignAvisos;multimidiaErros;multimidiaAvisos;formulariosErros;formulariosAvisos
