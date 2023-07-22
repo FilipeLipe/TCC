@@ -1,5 +1,6 @@
+#link;porcentagem;totalErros;totalAvisos;marcacaoErros;marcacaoAvisos;comportamentoErros;comportamentoAvisos;conteudoInformacaoErros;conteudoInformacaoAvisos;apresentacaoDesignErros;apresentacaoDesignAvisos;multimidiaErros;multimidiaAvisos;formulariosErros;formulariosAvisos
 import sys
-import arquivos
+from threading import Thread, Lock
 from model.Avaliacao import Avaliacao
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
@@ -9,15 +10,12 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+lock = Lock()
 
 def avaliarLink(link):
-
     avaliacao = Avaliacao(link)
-
     navegador = getNavegador()
-    
     getAvaliacao(navegador, link)
-
     getResposta(navegador, avaliacao)
 
 
@@ -37,9 +35,10 @@ def getAvaliacao(navegador, link):
 
     executar = navegador.find_element(By.ID, "input_tab_1")
     executar.click()
+    print("Avaliando: "+ link)
 
 def getResposta(navegador, avaliacao: Avaliacao):
-
+    
     getPorcentagem(navegador, avaliacao)
     getTabela(navegador, avaliacao)
 
@@ -66,9 +65,21 @@ def getTabela(navegador, avaliacao: Avaliacao):
 
 
 def setResposta(avaliacao):
-    with open('arquivosTXT/avaliacao.txt', 'a') as arquivo: 
-        arquivo.write('\n'+ avaliacao.to_string())
+    with lock:
+        with open('arquivosTXT/avaliacao.txt', 'a') as arquivo:
+            arquivo.write('\n' + avaliacao.to_string())
+
 
 if __name__ == '__main__':
-    sys.exit(avaliarLink('http://ufop.br'))
-    #link;porcentagem;totalErros;totalAvisos;marcacaoErros;marcacaoAvisos;comportamentoErros;comportamentoAvisos;conteudoInformacaoErros;conteudoInformacaoAvisos;apresentacaoDesignErros;apresentacaoDesignAvisos;multimidiaErros;multimidiaAvisos;formulariosErros;formulariosAvisos
+    links = ['http://ufop.br', 'https://www.ufop.br/historia-da-ufop', 'https://ufop.br/50anos']
+
+    threads = [Thread(target=avaliarLink, args=(link,)) for link in links]
+
+    for thread in threads:
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+
+    print("\nAvaliação de todos os links concluidos!\n")
+    

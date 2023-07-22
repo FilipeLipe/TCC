@@ -757,3 +757,216 @@ JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/a
 JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
 JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1690066619882	geckodriver	INFO	Listening on 127.0.0.1:50519
+1690066622930	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "50520" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\filip\\AppData\\Local\\Temp\\rust_mozprofile08wYu9"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690066623297	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690066623381	Marionette	INFO	Listening on port 50543
+WebDriver BiDi listening on ws://127.0.0.1:50520
+Read port: 50543
+1690066623716	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:50518/devtools/browser/bec7d2fa-c1b8-47b8-b684-e260cbb0d755
+console.error: (new TypeError("linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+vaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+vaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1690066789460	geckodriver	INFO	Listening on 127.0.0.1:50777
+1690066792523	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "50782" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\filip\\AppData\\Local\\Temp\\rust_mozprofilexNdozv"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690066792898	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690066792983	Marionette	INFO	Listening on port 50804
+WebDriver BiDi listening on ws://127.0.0.1:50781
+Read port: 50804
+1690066793330	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:50782/devtools/browser/abaa6bb3-2a0f-4c5c-a7ad-46647007ff3f
+console.error: (new TypeError("linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceJavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+vaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+vaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1690066887401	geckodriver	INFO	Listening on 127.0.0.1:50983
+1690066890462	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "50985" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\filip\\AppData\\Local\\Temp\\rust_mozprofileaPWE8n"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690066890874	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690066890956	Marionette	INFO	Listening on port 51009
+WebDriver BiDi listening on ws://127.0.0.1:50987
+Read port: 51009
+1690066891327	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:50986/devtools/browser/ababb216-bffd-46ed-94f0-72e36cbcb1aa
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+onico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+vaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1690068167866	geckodriver	INFO	Listening on 127.0.0.1:51769
+1690068170898	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "51771" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\filip\\AppData\\Local\\Temp\\rust_mozprofileD0jPRW"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690068171450	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690068171553	Marionette	INFO	Listening on port 51803
+WebDriver BiDi listening on ws://127.0.0.1:51772
+Read port: 51803
+1690068171870	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:51772/devtools/browser/1f7882ec-7ea0-4083-8641-44b9bf4e3758
+JavaScript warning: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/jquery-1.10.2.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+JavaScript error: https://asesweb.governoeletronico.gov.br/inicial_arquivos/js/acessibilidade.js, line 40: ReferenceError: gotoConteudo is not defined
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://asesweb.governoeletronico.gov.br."
