@@ -8,6 +8,7 @@ links_com_erro = set()
 
 
 link_inicial = 'https://www.ufop.br/'
+dominio = 'ufop'
 link_a_verificar = ''
 
 def main():

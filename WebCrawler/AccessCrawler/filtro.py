@@ -1,6 +1,6 @@
 
 import re
-
+import main
 links_pdf = set()
 
 def valida_link(links_processados: set(), links_com_erro: set(), link: str) -> bool:
@@ -13,12 +13,12 @@ def valida_link(links_processados: set(), links_com_erro: set(), link: str) -> b
     regex_palavras = re.compile(r"(wp-json|jcarousel|ajax|wp-content)", re.IGNORECASE)
     regex_autenticacao = re.compile(r"(minha.ufop|minhaufop|proad|user)", re.IGNORECASE)
     regex_rede_social = re.compile(r"(facebook|instagram|google|twitter|linkedin|pinterest|wordpress)", re.IGNORECASE)
-    regex_absurdos = re.compile(r"(calendario|radio|revistacuringa|eventos|noticias|repositorio|editais|edital|event|monografias|dados|calendar|editora|files)", re.IGNORECASE)
+    regex_absurdos = re.compile(r"(calendario|radio|revistacuringa|eventos|noticias|repositorio|editais|edital|event|monografias|dados|calendar|editora|files|article|periodicos|tv.ufop|archive)", re.IGNORECASE)
     regex_openScholar = re.compile(r"(quick_tabs_sidebar|front)", re.IGNORECASE)
     regex_barra_dupla = re.compile(r"\\\\")
 
     #VALIDO
-    regex_ufop = re.compile(r"ufop", re.IGNORECASE)
+    regex_ufop = re.compile(r""+main.dominio, re.IGNORECASE)
     regex_http_https = re.compile(r"https?://", re.IGNORECASE)
     regex_pdf = re.compile(r"\.pdf", re.IGNORECASE)
 
