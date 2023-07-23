@@ -1,6 +1,8 @@
 #link;porcentagem;totalErros;totalAvisos;marcacaoErros;marcacaoAvisos;comportamentoErros;comportamentoAvisos;conteudoInformacaoErros;conteudoInformacaoAvisos;apresentacaoDesignErros;apresentacaoDesignAvisos;multimidiaErros;multimidiaAvisos;formulariosErros;formulariosAvisos
 import sys
+import arquivos
 from threading import Thread, Lock
+from concurrent.futures import ThreadPoolExecutor
 from model.Avaliacao import Avaliacao
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
@@ -13,17 +15,34 @@ from selenium.webdriver.common.by import By
 lock = Lock()
 
 def avaliarLink(link):
+    print(link,navegadores_disponiveis)
     avaliacao = Avaliacao(link)
     navegador = getNavegador()
     getAvaliacao(navegador, link)
     getResposta(navegador, avaliacao)
+    liberarNavegador(navegador)
+    print(link, navegadores_disponiveis)
+    pass
 
+navegadores_disponiveis = []
 
 def getNavegador():
-    service = Service(GeckoDriverManager().install())
-    firefox_options = Options()
-    firefox_options.add_argument('-headless')
-    return webdriver.Firefox(service = service, options=firefox_options)
+    if not navegadores_disponiveis:
+        service = Service(GeckoDriverManager().install())
+        firefox_options = Options()
+        #firefox_options.add_argument('-headless')
+        navegador = webdriver.Firefox(service=service, options=firefox_options)
+        print("CRIOU NAVEGADOR")
+    else:
+        print("\nREUTILIZOU")
+        print(navegadores_disponiveis)
+        navegador = navegadores_disponiveis.pop()
+        print(navegadores_disponiveis)
+        print("\n")
+    return navegador
+
+def liberarNavegador(navegador):
+    navegadores_disponiveis.append(navegador)
 
 def getAvaliacao(navegador, link):
 
@@ -39,15 +58,30 @@ def getAvaliacao(navegador, link):
 
 def getResposta(navegador, avaliacao: Avaliacao):
     
+    if not awaitElemento(navegador):
+        return False
+    
     getPorcentagem(navegador, avaliacao)
+
     getTabela(navegador, avaliacao)
 
     setResposta(avaliacao)
 
+    return True
+
+
+
+def awaitElemento(navegador):
+    wait = WebDriverWait(navegador, 70)  
+    porcentagem_element = wait.until(EC.presence_of_element_located((By.ID, "webaxscore")))
+    if porcentagem_element:
+        return True
+    else:
+        return False
+
 
 def getPorcentagem(navegador, avaliacao: Avaliacao):
-    wait = WebDriverWait(navegador, 180)  
-    porcentagem_element = wait.until(EC.presence_of_element_located((By.ID, "webaxscore")))
+    porcentagem_element = navegador.find_element(By.ID, "webaxscore")
     avaliacao.porcentagem = porcentagem_element.find_element(By.TAG_NAME, "span").text
 
 
@@ -71,15 +105,17 @@ def setResposta(avaliacao):
 
 
 if __name__ == '__main__':
-    links = ['http://ufop.br', 'https://www.ufop.br/historia-da-ufop', 'https://ufop.br/50anos']
+    links_processados = set()
+    links_processados = arquivos.ler_linhas_arquivo(links_processados, "arquivosTXT/links_processados.txt")
 
-    threads = [Thread(target=avaliarLink, args=(link,)) for link in links]
+    max_threads = 10
 
-    for thread in threads:
-        thread.start()
+    with ThreadPoolExecutor(max_threads) as executor:
+        futures = {executor.submit(avaliarLink, link): link for link in links_processados}
 
-    for thread in threads:
-        thread.join()
+        for future in futures:
+            future.result()
 
-    print("\nAvaliação de todos os links concluidos!\n")
+    print("\nAvaliação de todos os links concluída!\n")
+
     
