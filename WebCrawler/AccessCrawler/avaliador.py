@@ -11,34 +11,27 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 
 lock = Lock()
+navegadores_disponiveis = []
 
 def avaliarLink(link):
-    print(link,navegadores_disponiveis)
     avaliacao = Avaliacao(link)
     navegador = getNavegador()
     getAvaliacao(navegador, link)
     getResposta(navegador, avaliacao)
     liberarNavegador(navegador)
-    print(link, navegadores_disponiveis)
     pass
-
-navegadores_disponiveis = []
 
 def getNavegador():
     if not navegadores_disponiveis:
         service = Service(GeckoDriverManager().install())
         firefox_options = Options()
-        #firefox_options.add_argument('-headless')
+        firefox_options.add_argument('-headless')
         navegador = webdriver.Firefox(service=service, options=firefox_options)
-        print("CRIOU NAVEGADOR")
     else:
-        print("\nREUTILIZOU")
-        print(navegadores_disponiveis)
         navegador = navegadores_disponiveis.pop()
-        print(navegadores_disponiveis)
-        print("\n")
     return navegador
 
 def liberarNavegador(navegador):
@@ -58,25 +51,22 @@ def getAvaliacao(navegador, link):
 
 def getResposta(navegador, avaliacao: Avaliacao):
     
-    if not awaitElemento(navegador):
-        return False
+    if awaitElemento(navegador):
+        getPorcentagem(navegador, avaliacao)
+        getTabela(navegador, avaliacao)
+        setResposta(avaliacao)
+        return True
     
-    getPorcentagem(navegador, avaliacao)
-
-    getTabela(navegador, avaliacao)
-
-    setResposta(avaliacao)
-
-    return True
+    return False
 
 
 
 def awaitElemento(navegador):
     wait = WebDriverWait(navegador, 70)  
-    porcentagem_element = wait.until(EC.presence_of_element_located((By.ID, "webaxscore")))
-    if porcentagem_element:
+    try:
+        porcentagem_element = wait.until(EC.presence_of_element_located((By.ID, "webaxscore")))
         return True
-    else:
+    except TimeoutException:
         return False
 
 
