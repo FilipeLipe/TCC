@@ -98,7 +98,7 @@ if __name__ == '__main__':
     links_processados = set()
     links_processados = arquivos.ler_linhas_arquivo(links_processados, "arquivosTXT/links_processados.txt")
 
-    max_threads = 10
+    max_threads = 20
 
     with ThreadPoolExecutor(max_threads) as executor:
         futures = {executor.submit(avaliarLink, link): link for link in links_processados}
