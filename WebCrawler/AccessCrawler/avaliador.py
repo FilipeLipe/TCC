@@ -1,5 +1,5 @@
-#link;porcentagem;totalErros;totalAvisos;marcacaoErros;marcacaoAvisos;comportamentoErros;comportamentoAvisos;conteudoInformacaoErros;conteudoInformacaoAvisos;apresentacaoDesignErros;apresentacaoDesignAvisos;multimidiaErros;multimidiaAvisos;formulariosErros;formulariosAvisos
 import sys
+import time
 import arquivos
 from threading import Thread, Lock
 from concurrent.futures import ThreadPoolExecutor
@@ -12,24 +12,37 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 
 lock = Lock()
 navegadores_disponiveis = []
+navegadores = []
 
 def avaliarLink(link):
-    avaliacao = Avaliacao(link)
-    navegador = getNavegador()
-    getAvaliacao(navegador, link)
-    getResposta(navegador, avaliacao)
-    liberarNavegador(navegador)
-    pass
+    try:
+        avaliacao = Avaliacao(link)
+        navegador = getNavegador()
+        getAvaliacao(navegador, link)
+        getResposta(navegador, avaliacao)
+        liberarNavegador(navegador)
+        return avaliacao
+    except:
+        print("Nao conseguimos avaliar por algum erro de codigo ou servidor, link: ", avaliacao.link,)
+        time.sleep(5)
+        if "503" in navegador.page_source:
+            print("Pagina 503")
+
+        navegadores.remove(navegador)
+        navegador.quit()
 
 def getNavegador():
-    if not navegadores_disponiveis:
+    if not navegadores_disponiveis and len(navegadores) < 20:
         service = Service(GeckoDriverManager().install())
         firefox_options = Options()
-        firefox_options.add_argument('-headless')
+        #firefox_options.add_argument('-headless')
         navegador = webdriver.Firefox(service=service, options=firefox_options)
+        navegadores.append(navegador)
+        print("Navegador ", len(navegadores))
     else:
         navegador = navegadores_disponiveis.pop()
     return navegador
@@ -39,25 +52,31 @@ def liberarNavegador(navegador):
 
 def getAvaliacao(navegador, link):
 
-    navegador.get("https://asesweb.governoeletronico.gov.br/")
-
+    while(True):
+        try:
+            navegador.get("https://asesweb.governoeletronico.gov.br/")
+            break
+        except:
+            print("Nao conseguimos acessar o site do ases!")
+    
     url_input = navegador.find_element(By.ID, "url")
     url_input.clear()
     url_input.send_keys(link)
 
     executar = navegador.find_element(By.ID, "input_tab_1")
     executar.click()
-    print("Avaliando: "+ link)
+    #print("Avaliando: "+ link)
 
 def getResposta(navegador, avaliacao: Avaliacao):
     
     if awaitElemento(navegador):
         getPorcentagem(navegador, avaliacao)
         getTabela(navegador, avaliacao)
-        setResposta(avaliacao)
-        return True
+        setResposta(avaliacao, 'arquivosTXT/avaliacao.txt')
+    else:
+        setResposta(avaliacao, 'arquivosTXT/avaliacao_erro.txt')
+
     
-    return False
 
 
 
@@ -73,6 +92,8 @@ def awaitElemento(navegador):
 def getPorcentagem(navegador, avaliacao: Avaliacao):
     porcentagem_element = navegador.find_element(By.ID, "webaxscore")
     avaliacao.porcentagem = porcentagem_element.find_element(By.TAG_NAME, "span").text
+    avaliacao.porcentagem = avaliacao.porcentagem.replace('%', '')
+    avaliacao.porcentagem = avaliacao.porcentagem.replace('.', ',')
 
 
 def getTabela(navegador, avaliacao: Avaliacao):
@@ -88,24 +109,51 @@ def getTabela(navegador, avaliacao: Avaliacao):
 
 
 
-def setResposta(avaliacao):
+def setResposta(avaliacao, arquivo):
     with lock:
-        with open('arquivosTXT/avaliacao.txt', 'a') as arquivo:
+        with open(arquivo, 'a') as arquivo:
             arquivo.write('\n' + avaliacao.to_string())
-
 
 if __name__ == '__main__':
     links_processados = set()
     links_processados = arquivos.ler_linhas_arquivo(links_processados, "arquivosTXT/links_processados.txt")
 
-    max_threads = 20
+    max_threads = 10
+    duration_minutes = 60 * 12
+    stop_time = time.time() + duration_minutes * 60
+    
+    header = '#dataCadastro;link;porcentagem;totalErros;totalAvisos;marcacaoErros;marcacaoAvisos;comportamentoErros;comportamentoAvisos;conteudoInformacaoErros;conteudoInformacaoAvisos;apresentacaoDesignErros;apresentacaoDesignAvisos;multimidiaErros;multimidiaAvisos;formulariosErros;formulariosAvisos'
+    setResposta(Avaliacao(header), 'arquivosTXT/avaliacao.txt')
 
     with ThreadPoolExecutor(max_threads) as executor:
         futures = {executor.submit(avaliarLink, link): link for link in links_processados}
+        
+        stop_time = time.time() + duration_minutes * 60
+        while True:
+            remaining = stop_time - time.time()
 
-        for future in futures:
-            future.result()
+            #print(remaining)
+            if remaining <= 0:
+                print("Tempo esgotado!")
+                executor.shutdown(wait=False, cancel_futures=True)
+                for navegador in navegadores:
+                    navegador.quit()
+                    
+                print("Navegadores Fechados!")
+                break
+
+            done, _ = wait(futures, timeout=remaining, return_when=FIRST_COMPLETED)
+
+            for future in done:
+                future.result() 
+
+            for future in done:
+                link = futures[future]
+                del futures[future]
+
+            if not futures:
+                break
+        
 
     print("\nAvaliação de todos os links concluída!\n")
 
-    

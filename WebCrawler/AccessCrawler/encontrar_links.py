@@ -13,7 +13,7 @@ def encontrar_links(links_processados: set(), links_com_erro: set(), url: str):
     links_encontrados = set()
 
     try:
-        response = requests.get(url, verify=False)
+        response = requests.get(url, verify=False, timeout=20)
     except Exception as err:
             print("Erro no Link: "+ url)
             return links_encontrados, False
@@ -28,12 +28,11 @@ def encontrar_links(links_processados: set(), links_com_erro: set(), url: str):
 
             if filtro.valida_link(links_processados, links_com_erro, link):
                 links_encontrados.add(link)
-                
         return links_encontrados, True
     else:
         print('Erro ao acessar a página:', response.status_code ,' | ', url)
         return links_encontrados, False
-    
+
 
 def verificar_link_local(url, link):
     if link:

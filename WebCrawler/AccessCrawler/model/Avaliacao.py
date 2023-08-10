@@ -1,7 +1,11 @@
+from datetime import datetime
+
+
 class Avaliacao:
     
     def __init__(self, link):
 
+        self.dataCadastro = datetime.now()
         self.link = link
         self.titulo = ""
         self.porcentagem = ""
@@ -22,4 +26,4 @@ class Avaliacao:
             if i < len(self.avisos):
                 erros_e_avisos += self.avisos[i] + ";"
 
-        return self.link +";"+ self.porcentagem +";"+ erros_e_avisos.strip()
+        return str(self.dataCadastro) +";"+ self.link +";"+ self.porcentagem +";"+ erros_e_avisos.strip()

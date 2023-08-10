@@ -16,11 +16,13 @@ def inicia_threads(encontrados: set(), processados: set(), com_erro: set(), link
     
     threads = []
     novos_links_encontrados = []
-
-    for link in links_encontrados:
-        thread = Thread(target=processar_link, args=(novos_links_encontrados, link, link_a_verificar))
-        thread.start()
-        threads.append(thread)
+    try:
+        for link in links_encontrados:
+            thread = Thread(target=processar_link, args=(novos_links_encontrados, link, link_a_verificar))
+            thread.start()
+            threads.append(thread)
+    except:
+        print("Thread")
 
     # Espera tudo terminar
     for thread in threads:
