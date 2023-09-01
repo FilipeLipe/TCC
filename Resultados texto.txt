@@ -1,0 +1,108 @@
+\subsection{Resultados do Carwler 4,00s}
+
+A Figura 1 apresenta a evolução da quantidade de links coletados em cada ciclo. É evidente o aumento marcante na quantidade de links coletados a cada ciclo, demonstrando a eficácia do Crawler em explorar a vastidão da Web de maneira eficiente e sistemática.
+
+Entretanto, conforme o Crawler avança nos ciclos, os aumentos expressivos na quantidade de links coletados começam a diminuir. Isso é natural, pois à medida que os links são explorados e coletados, a capacidade de encontrar novos links diminui gradualmente.
+
+Vamos analisar alguns resultados específicos de diferentes ciclos. No primeiro ciclo, o AccessCrawler foi iniciado com o link inicial da UFOP. Ele coletou 85 links em 1,4 segundos, e não encontrou links com erros.
+
+No segundo ciclo, os links coletados no primeiro ciclo foram usados como sementes. O Crawler coletou 1.416 novos links em 7,2 segundos, novamente sem erros encontrados.
+
+No terceiro ciclo, os links do segundo ciclo foram as sementes. Nesse ciclo, 2.309 novos links foram coletados em 57,6 segundos. No entanto, 846 links com erros foram identificados, que não puderam ser processados.
+
+No quarto ciclo, os links do terceiro ciclo foram usados como sementes. O Crawler coletou 2.500 novos links em 93,7 segundos, mas encontrou 388 links com erros.
+
+A análise desses resultados nos dá uma visão detalhada do desempenho do AccessCrawler ao longo dos ciclos de execução. Na próxima seção, vamos explorar os resultados específicos da avaliação de acessibilidade realizada em cada link coletado.
+
+\begin{table}[!h]
+\centering
+\caption{Análise do processamento dos \textit{links} pelo AccessCrawler}
+\label{tab:resultados_crawler}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Ciclo & Processados & Válidos & Com Erro & Encontrados & Tempo (s) \\
+\hline
+1 & 1 & 1 & 0 & 85 & 1,4 \\
+2 & 85 & 85 & 0 & 1416 & 7,2 \\
+3 & 1416 & 570 & 846 & 2309 & 57,6 \\
+4 & 2309 & 1921 & 388 & 2500 & 93,7 \\
+5 & 2500 & 2153 & 347 & 2365 & 102,1 \\
+6 & 2365 & 1477 & 888 & 752 & 110,8 \\
+7 & 752 & 737 & 15 & 572 & 32,4 \\
+8 & 572 & 520 & 52 & 439 & 35,2 \\
+9 & 439 & 231 & 208 & 243 & 37,6 \\
+10 & 243 & 200 & 43 & 142 & 16,4 \\
+11 & 142 & 142 & 0 & 116 & 12,7 \\
+12 & 116 & 116 & 0 & 49 & 15,4 \\
+13 & 49 & 48 & 1 & 91 & 5,6 \\
+14 & 91 & 89 & 2 & 61 & 13,6 \\
+15 & 61 & 57 & 4 & 11 & 9,3 \\
+16 & 11 & 10 & 1 & 33 & 2,5 \\
+17 & 33 & 33 & 0 & 78 & 11,1 \\
+18 & 78 & 73 & 5 & 84 & 22,4 \\
+19 & 84 & 83 & 1 & 70 & 22,1 \\
+20 & 70 & 68 & 2 & 52 & 17,8 \\
+21 & 52 & 52 & 0 & 10 & 13,7 \\
+22 & 10 & 8 & 2 & 27 & 4,4 \\
+23 & 27 & 27 & 0 & 33 & 5,2 \\
+24 & 33 & 33 & 0 & 22 & 5 \\
+25 & 22 & 22 & 0 & 1 & 4,2 \\
+26 & 1 & 1 & 0 & 14 & 1,9 \\
+27 & 14 & 14 & 0 & 18 & 3,4 \\
+28 & 18 & 18 & 0 & 10 & 5 \\
+29 & 10 & 10 & 0 & 9 & 3 \\
+30 & 9 & 9 & 0 & 0 & 2,8 \\
+Total & 11613 & 8808 & 2805 & 11612 & 675,5 \\
+\hline
+\end{tabular}
+\end{table}
+
+Avancemos para entender como a avaliação de acessibilidade foi realizada e como os resultados foram interpretados e analisados.
+
+
+
+\subsection{Resultados do Avaliador 4,20s}
+Agora, vamos explorar os resultados da avaliação de acessibilidade realizada em cada link coletado pelo AccessCrawler. Afinal, o objetivo principal do AccessCrawler é avaliar a acessibilidade de todos esses links. Durante a execução, foram avaliados os 8808 \textit{links} válidos que foram encontrados pelo \textit{Crawler}. Utilizou-se um conjunto de 10 \textit{threads} simultâneas para realizar os testes. O Avaliador de Acessibilidade foi configurado para processar um conjunto prévio de \textit{links}, obtidos através do \textit{Web} \textit{Crawler}. O ASES analisou a acessibilidade dos \textit{links}, medindo o tempo de execução e coletando métricas de acessibilidade, incluindo a porcentagem de acessibilidade, o total de erros e o total de avisos.
+
+O AccessCrawler concluiu as avaliações dos \textit{links} válidos em 7 horas, durante as quais 7607 \textit{links} foram considerados avaliados com sucesso, enquanto 1201 apresentaram erros e não foram possíveis de serem avaliados. Dentro dessa análise, a página com a menor taxa de conformidade foi "Educação Ambiental - ESCV" com 50,49\%, enquanto a página do "Colegiado de Ciência da Computação" obteve a maior conformidade com 97,66\%. A média de conformidade de todos os \textit{links} avaliados foi de 78,6\%. Em relação a erros e avisos, a média foi de 18 erros e 77 avisos.
+
+Ao considerar os \textit{links} avaliados, é importante mencionar que o ASES classificou 48 \textit{links} como de alto nível de conformidade, enquanto 1801 \textit{links} obtiveram classificação de médio nível. Além disso, 4482 \textit{links} foram categorizados como de baixo nível de conformidade e 1266 como de nível baixíssimo, como podemos observar na Figura abaixo. Isso revela que 75,66\% das páginas do domínio ufop.br têm grau baixo ou baixíssimo de acessibilidade Web.
+
+\begin{figure}[!h]
+  \centering
+  \caption{Porcentagem}
+  \includegraphics[width=\textwidth]{Img/WhatsApp Image 2023-08-21 at 19.11.51.jpeg}
+  \label{fig:exemplo}
+\end{figure}
+
+
+A Tabela \ref{tab:resultadosAvaliacao} apresenta as médias de erros e avisos encontrados em cada seção do e-MAG durante a avaliação dos \textit{links}. A categoria de "Marcação" evidenciou um número considerável de avisos, enquanto a categoria de "Conteúdo e Informação" apresentou a maior média de erros. De maneira interessante, as seções de "Apresentação e \textit{Design}" tiveram uma média de 1 erro e as seções "Multimídia" e "Formulários" não apresentaram erros.
+
+\begin{table}[h]
+\centering
+\caption{Média de Erros e Avisos}
+\label{tab:resultadosAvaliacao}
+\begin{tabular}{|c|c|c|}
+\hline
+Seção & Erros & Avisos \\
+\hline
+Marcação & 6 & 64 \\
+Comportamento & 1 & 4 \\
+Conteúdo e Informação & 8 & 4 \\
+Apresentação e \textit{Design} & 1 & 0 \\
+Multimídia & 0 & 0 \\
+Formulários & 0 & 2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Durante as 7 horas de avaliação, foi possível processar apenas uma pequena porcentagem dos \textit{links} presentes no \textit{site} da UFOP. Considerando que existem milhares de \textit{links} em todo o \textit{site}, a amostra avaliada representa apenas uma fração do total. Para obter uma média verdadeiramente representativa de conformidade, seria necessário um período de tempo muito maior para analisar todos os \textit{links}.
+
+
+Atualmente, após as 7 horas de avaliação, foram processados um total de 8808 \textit{links}. O tempo estimado para avaliar todos os \textit{links} do domínio pode ser calculado pela fórmula:
+\[
+\text{Tempo Estimado (horas)} = \frac{\text{7} \times \text{TotalLinksDomínio}}{\text{8.808}}
+\]
+ 
+Esta estimativa é baseada nas condições atuais de execução do avaliador e o tempo real pode variar de acordo com diferentes fatores. Essa estimativa é uma ferramenta valiosa para planejar adequadamente o tempo e os recursos necessários para uma análise completa e abrangente da acessibilidade do \textit{site} da universidade.
+

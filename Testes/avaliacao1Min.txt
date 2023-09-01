@@ -1,0 +1,29 @@
+#link	porcentagem	totalErros	totalAvisos	marcacaoErros	marcacaoAvisos	comportamentoErros	comportamentoAvisos	conteudoInformacaoErros	conteudoInformacaoAvisos	apresentacaoDesignErros	apresentacaoDesignAvisos	multimidiaErros	multimidiaAvisos	formulariosErros	formulariosAvisos
+https://web.archive.org/web/20180904050616/http://www.sisbin.ufop.br/	77,5	4	1	2	1	0	0	2	0	0	0	0	0	0	0
+https://periodicos.ufop.br/mescla/article/view/4101	88,32	8	17	3	5	1	1	3	10	0	0	0	0	1	1
+https://web.archive.org/web/20190118173710/https://www.sisbin.ufop.br/novoportal/?page_id=77	77,5	4	1	2	1	0	0	2	0	0	0	0	0	0	0
+https://web.archive.org/web/20190119210620/http://www.ufop.br/moradia-estudantil	77,5	4	1	2	1	0	0	2	0	0	0	0	0	0	0
+https://github.com/ufopcsilab/ECGClassification/blob/master/TVCG_PSO/classify_ds11_ds12.m	84,91	12	244	6	233	1	2	4	6	0	0	0	0	1	3
+https://web.archive.org/web/20180904040656/https://www.ufop.br/alunos-graduacao/mobilidade-academica	77,5	4	1	2	1	0	0	2	0	0	0	0	0	0	0
+https://www.soc.ufop.br/public/resolucao/mostrar/0000012376	79,4	15	15	5	13	1	0	7	1	0	0	0	0	2	1
+https://web.archive.org/web/20180725031541/http://demus.ifac.ufop.br/conjunto-de-flautas-doce	77,5	4	1	2	1	0	0	2	0	0	0	0	0	0	0
+https://periodicos.ufop.br/rmat/article/view/6804	85,6	8	18	6	10	1	1	0	6	0	0	0	0	1	1
+https://www.propp.ufop.br/pt-br/news/saude-e-estetica-como-contextualizadoras-da-aprendizagem-em-biologia-celular	63,58	17	63	5	53	1	2	6	6	1	0	0	0	4	2
+http://www.editora.ufop.br/index.php/editora/catalog/view/12/3/17-1	87,88	5	7	4	6	1	1	0	0	0	0	0	0	0	0
+https://www.prograd.ufop.br/relatorios-20122	72,87	18	67	4	51	1	5	9	9	0	0	0	0	4	2
+https://periodicos.ufop.br/raf/article/view/758	88,51	8	26	3	9	1	3	3	13	0	0	0	0	1	1
+https://periodicos.ufop.br/alemur/citationstylelanguage/get/turabian-fullnote-bibliography?submissionId=307	86,07	4	0	3	0	0	0	1	0	0	0	0	0	0	0
+https://lph.ichs.ufop.br/publications/condi%C3%A7%C3%A3o-do-negro-na-hist%C3%B3ria-do-brasil-uma-an%C3%A1lise-sobre-os-manuais-did%C3%A1ticos-de-1	84,96	34	68	22	47	2	6	10	14	0	0	0	0	0	1
+https://cead.ufop.br/index.php/espirito-santo	80,23	50	86	17	71	0	8	33	7	0	0	0	0	0	0
+https://fisica.ufop.br/classes/sim?page=2	86,12	22	67	18	47	1	4	3	16	0	0	0	0	0	0
+https://en.ufop.br/biotechnology	74,52	27	80	8	72	1	5	14	1	0	0	0	0	4	2
+https://nei.ufop.br/index.php?option=com_content&view=article&id=148:ifmg-op-promove-1-seminario-de-libras-e-educacao-do-surdo&catid=17&Itemid=305	91,01	12	93	6	78	0	7	6	8	0	0	0	0	0	0
+https://conan.ufop.br/media-gallery/detail/13495/25751	80,13	8	53	4	42	1	3	2	8	1	0	0	0	0	0
+http://tv.ufop.br/curta-livre-cinema-mudo	72,02	9	49	4	42	1	2	0	3	0	0	0	0	4	2
+https://cead.ufop.br/index.php/gestao-de-polos?id=157	73,03	50	90	16	77	0	7	33	6	1	0	0	0	0	0
+https://sigaa.ufopa.edu.br/sigaa/public/docente/portal.jsf?siape=1583178	65,65	9	19	5	14	1	4	2	1	1	0	0	0	0	0
+http://www2.decom.ufop.br/imobilis/tag/detailviewcontroller/	77,58	46	102	5	79	1	12	40	11	0	0	0	0	0	0
+https://farmaciadeouro.ufop.br/news?type=month&month=2023-07&mini=2023-07	83,77	28	108	24	89	1	4	2	14	1	0	0	0	0	1
+Media	79,4	9	49	5	42	1	2	3	6	0	0	0	0	0	0
+Menor	63,58														
+Maior	91,01														

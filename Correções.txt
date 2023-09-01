@@ -1,0 +1,16 @@
+Nao sabia oq era crawler
+
+o que seria multiplos ciclos
+
+definir termos antes de usar
+
+Colocar que os pdfs nao foram avaliados e como q os filtros foram fundamentais
+
+Esse trabalho apresenta o desenvolvimento em vez de propoem no começo
+
+tentar adaptar para usar no colab
+
+Colocar o tamanho da pagina para indicar a quantidade de erros da pagina
+
+Contar os links que sao descartados
+

@@ -9,7 +9,7 @@ def valida_link(links_processados: set(), links_com_erro: set(), link: str) -> b
         return False
     
     #INVALIDO
-    regex_extensoes = re.compile(r"\.(css|gif|js|png|jpg|php|jpeg|doc|docx|xlsx|xml|zip|rar|pptx|ppt|xls)$", re.IGNORECASE)
+    regex_extensoes = re.compile(r"\.(css|gif|js|png|jpg|php|jpeg|doc|docx|xlsx|xml|zip|rar|pptx|ppt|xls|txt|htm|mp4|)$", re.IGNORECASE)
     regex_palavras = re.compile(r"(wp-json|jcarousel|ajax|wp-content|ufopa|adufop|.xml|soc)", re.IGNORECASE)
     regex_autenticacao = re.compile(r"(minha.ufop|minhaufop|proad|user|moodle)", re.IGNORECASE)
     regex_rede_social = re.compile(r"(facebook|instagram|google|twitter|linkedin|pinterest|wordpress|github|webmail|pesquisa@ufop|youtube)", re.IGNORECASE)

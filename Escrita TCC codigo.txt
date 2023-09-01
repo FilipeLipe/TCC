@@ -1,0 +1,266 @@
+
+\subsection{Main 1,28s}
+O método main coordena o fluxo de execução do programa. Ele lida com a leitura dos arquivos de texto e a alocação de valores aos conjuntos links\_encontrados, links\_processados e links\_com\_erro.
+
+Uma característica importante é a maneira como o programa lida com a retomada da execução após uma possível interrupção. Caso a variável links\_encontrados esteja vazia, o conjunto é inicializado com o link inicial fornecido. Isso garante que, mesmo que ocorra uma interrupção, o progresso não seja perdido e a execução possa ser retomada de onde parou.
+
+Na linha 21, chamamos a função inicia\_threads() do módulo processar\_links. Ela inicia o processamento dos links em threads separadas, permitindo uma execução mais eficiente e paralela do programa. Isso é especialmente benéfico quando se lida com um grande número de links para processar. Após o processamento concluído pelas threads, os arquivos de texto são atualizados com os novos links encontrados.
+
+Agora que entendemos o fluxo de execução básico do nosso AccessCrawler, vamos nos aprofundar nas técnicas usadas para coletas os links e valida-los.
+
+\begin{lstlisting}[style=codestyle, caption={Método principal do programa.}, label={lst:main}]
+links_encontrados = set()
+links_processados = set()
+links_com_erro = set()
+
+link_inicial = 'https://www.ufop.br/'
+dominio = 'ufop'
+link_a_verificar = ''
+
+def main():
+    while(True):
+        links_encontrados = arquivos.ler_linhas_arquivo(links_encontrados, "arquivosTXT/links_encontrados.txt")
+        links_processados = arquivos.ler_linhas_arquivo(links_processados, "arquivosTXT/links_processados.txt")
+        links_com_erro = arquivos.ler_linhas_arquivo(links_com_erro, "arquivosTXT/links_com_erro.txt")
+
+        if len(links_encontrados) == 0 and len(links_processados) == 0:
+            links_encontrados.add(link_inicial)
+        elif len(links_encontrados) == 0:
+            print("Chegamos ao fim !!")
+            break
+
+        links_encontrados, links_processados, links_com_erro = processar_links.inicia_threads(links_encontrados, links_processados, links_com_erro, link_a_verificar)
+
+        arquivos.escrever_linhas_arquivo(links_encontrados, "arquivosTXT/links_encontrados.txt")
+        arquivos.escrever_linhas_arquivo(links_processados, "arquivosTXT/links_processados.txt")
+        arquivos.escrever_linhas_arquivo(links_com_erro, "arquivosTXT/links_com_erro.txt")
+\end{lstlisting}
+
+\subsection{Arquivos 25s}
+Agora, vamos dar uma olhada no módulo arquivos.py, onde algumas funções são implementadas para fazer a manipulação de arquivos e links. Essas funções desempenham o papel de facilitação do processamento e atualização das informações durante a execução do nosso script principal.
+
+\subsection{Processar\_links 2,30s}
+Agora, vamos mergulhar na coordenação do processamento dos links encontrados. Neste trecho de código, a estruturação e execução eficiente das threads é fundamental. A função inicia\_threads, desempenha um papel crucial na orquestração do processamento dos links durante a execução do programa, ela gerencia a criação e iniciação de threads para processar cada link encontrado. Durante uma iteração sobre os links encontrados, uma thread é criada para processar cada um deles. Essas threads são adicionadas a uma lista chamada threads. Após todas as threads serem iniciadas, a função aguarda a conclusão da execução de cada uma, assegurando o processamento completo dos links.
+
+Ao final do processamento, a função inicia\_threads atualiza o conjunto links\_encontrados com os novos links encontrados durante o rastreamento. Como resultado, ela retorna uma tupla contendo os conjuntos links\_encontrados, links\_processados e links\_com\_erro atualizados.
+
+\begin{lstlisting}[style=codestyle, caption={Inicialização das \textit{threads} e retorno dos \textit{links} encontrados.}, label={lst:threads}]
+    for link in links_encontrados:
+        thread = Thread(target=processar_link, args=(novos_links_encontrados, link, link_a_verificar))
+        thread.start()
+        threads.append(thread)
+
+    # Espera tudo terminar
+    for thread in threads:
+        thread.join()
+
+    for link in novos_links_encontrados:
+        if link not in links_processados and link not in links_com_erro:
+            links_encontrados.add(link)
+
+    return links_encontrados, links_processados, links_com_erro
+\end{lstlisting}
+
+Agora, focando na função processar\_link, podemos observar que ela tem um papel específico no processamento individual de cada link encontrado. Recebe como parâmetros uma lista chamada results para armazenar novos links encontrados e o link a ser processado.
+
+O procedimento começa com a verificação se o link ainda não foi processado, ou seja, se não consta nos conjuntos links\_processados e links\_com\_erro. Se o link ainda não foi processado, a função invoca encontrar\_links() do módulo encontrar\_links, fornecendo os conjuntos links\_processados, links\_com\_erro e o link a ser processado.
+
+Se encontrar\_links() retornar verdadeiro, indicando que o link foi processado com sucesso e novos links foram encontrados, o link é adicionado a links\_processados, e os novos links encontrados são adicionados à lista results. Se encontrar\_links() retornar falso, indicando que o link não foi encontrado, o link é adicionado a links\_com\_erro.
+
+Essas funções trabalham juntas para garantir a coordenação eficiente das threads, o processamento de cada link e a atualização dos conjuntos de links durante a execução do programa. Agora, vamos explorar como os links são filtrados para garantir a qualidade e relevância dos resultados. Vamos ao próximo slide para mais detalhes.
+
+\begin{lstlisting}[style=codestyle, caption={Processamento dos \textit{links}.}, label={lst:processamento}]
+    if link not in links_processados and link not in links_com_erro:
+
+        novos_links_encontrados, encontrou = encontrar_links.encontrar_links(links_processados, links_com_erro, link)
+
+        if(encontrou):
+            links_processados.add(link)
+            results.extend(novos_links_encontrados)
+
+        else:
+            links_com_erro.add(link)
+    else:
+        print("LINK JA PROCESSADO | ", link)
+\end{lstlisting}
+
+\subsection{Encontrar Links 2,48s}
+Agora, vamos nos aprofundar na função "encontrar\_links", uma peça essencial no contexto do programa, dedicada a realizar a busca de links em uma página da Web.
+
+Ela desempenha a tarefa de localizar os links na página a partir da URL fornecida. Para isso, utilizamos a biblioteca "requests" para realizar uma solicitação HTTP GET à página especificada, utilizando o método requests.get(). Se a solicitação for bem-sucedida, com um código de status 200, o conteúdo HTML da página é submetido à análise usando a biblioteca "BeautifulSoup". Essa biblioteca é empregada para analisar o conteúdo HTML e extrair os links encontrados na página.
+
+Adicionalmente, antes de incorporar os links ao conjunto links\_encontrados, cada link encontrado é validado pela função valida\_link(), localizada no módulo "filtro". Isso garante que apenas links válidos sejam adicionados ao conjunto.
+
+\begin{lstlisting}[style=codestyle, caption={Método encontrar \textit{links}.}, label={lst:encontrarLinks}]
+    try:
+        response = requests.get(url, verify=False)
+    except Exception as err:
+            print("Erro no Link: "+ url)
+            return links_encontrados, False
+    
+    if response.status_code == 200:
+        conteudo_html = response.text
+        soup = BeautifulSoup(conteudo_html, 'html.parser')
+        links = soup.find_all('a')
+        for a in links:
+            link = a.get('href')
+            link = verificar_link_local(url, link)
+
+            if filtro.valida_link(links_processados, links_com_erro, link):
+                links_encontrados.add(link)
+                
+        return links_encontrados, True
+    else:
+        print('Erro ao acessar a pagina:', response.status_code ,' | ', url)
+        return links_encontrados, False
+\end{lstlisting}
+
+Além disso, a função "verificar\_link\_local(url, link)" é acionada para verificar se um link é local ou relativo. Ela tem a função de converter links relativos para um formato absoluto, quando necessário. A verificação se inicia checando se o link começa com "http". Se começar com "http", é considerado um URL absoluto, apontando diretamente para um recurso em um domínio externo. Se o link começar com "/", indica um link relativo à raiz do domínio, que é convertido para um URL absoluto verificável.
+
+\begin{lstlisting}[style=codestyle, caption={Gerar \textit{links} absoluto.}, label={lst:linkAbsoluto}]
+    if link.startswith('http'):
+        return link
+    
+    if link.startswith('/'):
+
+        dominio_url = url
+        posicao_barra = url.find("/", 8) 
+        if posicao_barra != -1:
+            dominio_url = url[:posicao_barra]
+
+        return dominio_url + link
+\end{lstlisting}
+
+A colaboração entre as funções "encontrar\_links" e "verificar\_link\_local" é vital para realizar a verificação e processamento apropriado dos links em uma página da Web. Essa cooperação é fundamental no fluxo de execução do programa, garantindo a qualidade e a precisão dos links encontrados.
+
+\subsection{Filtro 3,20s}
+Agora, vamos explorar o metodo que valida os links encontrados antes de incorporá-los aos conjuntos links\_processados ou links\_com\_erro. Esta função, conhecida como "valida\_link", utiliza expressões regulares para verificar as características dos links e garantir que apenas os links apropriados sejam processados.
+
+\begin{lstlisting}[style=codestyle, caption={Filtros de validação de \textit{links}.}, label={lst:filtro}]
+    if regex_ufop.search(link) and regex_http_https.search(link):
+        if not (regex_extensoes.search(link) 
+        or regex_palavras.search(link) 
+        or regex_barra_dupla.search(link) 
+        or regex_autenticacao.search(link) 
+        or regex_absurdos.search(link) 
+        or regex_openScholar.search(link) 
+        or regex_rede_social.search(link) 
+        or regex_downloads.search(link)):
+
+            if link not in links_processados and link not in links_com_erro:
+                return True
+   
+    return False
+\end{lstlisting}
+
+Para começar, a função valida\_link determina várias expressões regulares, cada uma projetada para realizar verificações específicas no link. Essas expressões servem para identificar partes indesejadas ou características que indicariam que um link não é válido, como extensões de arquivo como .css, .gif, .js, .png, entre outros.
+
+Além disso, a função utiliza expressões regulares para verificar se o link contém partes válidas, como o trecho ".ufop", que é definido pelo domínio da UFOP, ou se começa com "http://" ou "https://", indicando links HTTP ou HTTPS. Se um link atender a todas as regras de validação, ele é adicionado ao conjunto links\_processados e a função retorna True.
+
+Caso contrário, se o link não atender aos critérios de validação, ele é adicionado ao conjunto links\_com\_erro, e a função retorna False. Essa abordagem assegura que apenas os links válidos e únicos, que ainda não foram processados ou que não estão na lista de erros, sejam adicionados ao conjunto links\_encontrados.
+
+A criação da expressão regular denominada regex\_absurdos é opcional e visa otimizar o desempenho, permitindo uma coleta mais focada e direcionada dos links. No entanto, sua inclusão ou exclusão depende dos objetivos específicos do projeto e da análise de acessibilidade.
+
+Agora que entendemos como os links são validados e filtrados, vamos explorar como o processo de avaliação da acessibilidade é realizado sobre esses links.
+
+\subsection{Avaliador 5,00s}
+O código apresentado, descreve a função principal que orquestra a avaliação dos links. Primeiro são lidos os links processados de um arquivo de texto. Em seguida, é criado um conjunto de threads. Cada thread é atribuída à função de avaliação avaliarLink(link), que recebe um link específico como argumento. Vale ressaltar que o número máximo de threads simultâneas é definido como 10, uma vez que isso se alinha com os recursos disponíveis na máquina de teste.
+
+\begin{lstlisting}[style=codestyle, caption={Processo de avaliação.}, label={lst:avalicacaoLink}]
+def avaliarLink(link):
+    avaliacao = Avaliacao(link)
+    navegador = getNavegador()
+    getAvaliacao(navegador, link)
+    getResposta(navegador, avaliacao)
+    liberarNavegador(navegador)
+    pass
+\end{lstlisting}
+
+
+O trecho Ilustra a função avaliarLink(link) responsável pela avaliação de um link específico. Dentro dessa função, uma instância da classe Avaliacao é criada para representar os resultados da avaliação desse link.
+
+A classe Avaliacao possui um construtor que inicializa várias variáveis de instância, como titulo, porcentagem, data, tamanho, tempoAvaliacao, secoes, erros e avisos. O construtor recebe o link avaliado como argumento. A classe Avaliacao também possui um método chamado to\_string(), que retorna uma representação dos resultados da avaliação em formato de string. Esse método percorre as listas de erros e avisos, concatenando seus elementos separados por ponto e vírgula.
+
+
+\begin{lstlisting}[style=codestyle, caption={Classe Avaliação.}, label={lst:objeto}]
+class Avaliacao:
+    
+    def __init__(self, link):
+
+        self.link = link
+        self.titulo = ""
+        self.porcentagem = ""
+        self.data = ""
+        self.tamanho = ""
+        self.tempoAvaliacao = ""
+        self.secoes = [""]
+        self.erros = []
+        self.avisos = []
+
+    def to_string(self):
+        erros_e_avisos = ""
+        max_length = max(len(self.erros), len(self.avisos))
+
+        for i in range(max_length):
+            if i < len(self.erros):
+                erros_e_avisos += self.erros[i] + ";"
+            if i < len(self.avisos):
+                erros_e_avisos += self.avisos[i] + ";"
+
+        return self.link +";"+ self.porcentagem +";"+ erros_e_avisos.strip()
+        
+\end{lstlisting}
+
+Agora, vamos explorar como a avaliação de cada link é executada. Na função avaliarLink(), um navegador é obtido usando a função getNavegador(). Se não houver navegadores disponíveis, uma nova instância do navegador Firefox é criada e configurada para operar em modo "headless".
+
+Após obter o navegador, a função getAvaliacao() é chamada para abrir a página de avaliação e inserir o link a ser avaliado. Em seguida, a avaliação é executada clicando no botão "Executar".
+
+\begin{lstlisting}[style=codestyle, caption={Método de inicialização dos navegadores.}, label={lst:navegador}]
+def getNavegador():
+    if not navegadores_disponiveis:
+        service = Service(GeckoDriverManager().install())
+        firefox_options = Options()
+        firefox_options.add_argument('-headless')
+        navegador = webdriver.Firefox(service=service, options=firefox_options)
+    else:
+        navegador = navegadores_disponiveis.pop()
+    return navegador
+
+def liberarNavegador(navegador):
+    navegadores_disponiveis.append(navegador)
+\end{lstlisting}
+
+O processo de obtenção dos resultados da avaliação e sua inserção na instância da classe Avaliacao é feito através da função getResposta(). Esta função verifica se o elemento da porcentagem da avaliação está presente na página usando awaitElemento(navegador) para garantir que a avaliação foi concluída e os dados estão disponíveis.
+
+\begin{figure}[!h]
+  \centering
+  \caption{Porcentagem}
+  \includegraphics[width=\textwidth]{Img/porcentagem.png}
+  \label{fig:exemplo}
+\end{figure}
+
+\begin{lstlisting}[style=codestyle, caption={Processo de avaliação.}, label={lst:avalicacao}]
+def getResposta(navegador, avaliacao: Avaliacao):
+    
+    if awaitElemento(navegador):
+        getPorcentagem(navegador, avaliacao)
+        getTabela(navegador, avaliacao)
+        setResposta(avaliacao)
+        return True
+    
+    return False
+\end{lstlisting}
+
+Os dados da tabela de erros e avisos são divididos em diferentes seções, cada uma representando uma categoria específica de avaliação de acessibilidade, como erros de marcação, comportamento, conteúdo, apresentação, multimídia e formulários.
+
+\begin{figure}[!h]
+  \centering
+  \caption{Porcentagem}
+  \includegraphics[width=\textwidth]{Img/getTabela.png}
+  \label{fig:exemplo}
+\end{figure}
+
+Finalmente, após a avaliação de cada link, os resultados são gravados em um arquivo de texto usando o método setResposta(avaliacao). Esse método escreve os resultados de maneira organizada e protegida, garantindo que múltiplas threads possam gravar nos arquivos sem conflitos.
+
+Com esse processo de avaliação detalhadamente explicado, agora estamos prontos para explorar os resultados e entender como eles podem ser usados para avaliar a acessibilidade do site.
+

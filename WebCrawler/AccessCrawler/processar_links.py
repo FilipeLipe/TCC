@@ -22,7 +22,7 @@ def inicia_threads(encontrados: set(), processados: set(), com_erro: set(), link
             thread.start()
             threads.append(thread)
     except:
-        print("Thread")
+        thread.join()
 
     # Espera tudo terminar
     for thread in threads:

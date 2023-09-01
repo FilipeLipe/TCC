@@ -36,7 +36,6 @@ def main():
 
         links_encontrados, links_processados, links_com_erro = processar_links.inicia_threads(links_encontrados, links_processados, links_com_erro, link_a_verificar)
 
-        print("BATATA")
         resultado = {
             "processado": len(links_processados) - links_processados_antes, 
             "encontrado": len(links_encontrados),

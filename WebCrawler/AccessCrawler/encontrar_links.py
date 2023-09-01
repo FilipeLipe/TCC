@@ -2,13 +2,16 @@
 import requests
 requests.packages.urllib3.disable_warnings()
 import ssl
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning, MarkupResemblesLocatorWarning
 from typing import List
+import warnings
 
 import filtro
 
 def encontrar_links(links_processados: set(), links_com_erro: set(), url: str):
      
+    warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
+    warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
     ssl._create_default_https_context = ssl._create_unverified_context
     links_encontrados = set()
 
@@ -20,15 +23,18 @@ def encontrar_links(links_processados: set(), links_com_erro: set(), url: str):
     
     if response.status_code == 200:
         conteudo_html = response.text
-        soup = BeautifulSoup(conteudo_html, 'html.parser')
-        links = soup.find_all('a')
-        for a in links:
-            link = a.get('href')
-            link = verificar_link_local(url, link)
+        try:
+            soup = BeautifulSoup(conteudo_html, 'html.parser')
+            links = soup.find_all('a')
+            for a in links:
+                link = a.get('href')
+                link = verificar_link_local(url, link)
 
-            if filtro.valida_link(links_processados, links_com_erro, link):
-                links_encontrados.add(link)
-        return links_encontrados, True
+                if filtro.valida_link(links_processados, links_com_erro, link):
+                    links_encontrados.add(link)
+            return links_encontrados, True
+        except:
+            print("Link nao é um HTML e sim um XML")
     else:
         print('Erro ao acessar a página:', response.status_code ,' | ', url)
         return links_encontrados, False
